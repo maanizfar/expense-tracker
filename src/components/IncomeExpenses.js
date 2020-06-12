@@ -29,16 +29,16 @@ const BalanceText = styled.h1`
   color: ${(props) => props.color};
 `;
 
-const IncomeExpenses = () => {
+const IncomeExpenses = ({ income, expense }) => {
   return (
     <Container>
       <StatContainer>
         <Label>Income</Label>
-        <BalanceText color="green">$260.55</BalanceText>
+        <BalanceText color="green">${income}</BalanceText>
       </StatContainer>
       <StatContainer>
         <Label>Expense</Label>
-        <BalanceText color="red">$260.55</BalanceText>
+        <BalanceText color="red">${expense}</BalanceText>
       </StatContainer>
     </Container>
   );

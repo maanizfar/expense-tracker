@@ -10,11 +10,11 @@ const BalanceText = styled.h1`
   margin: 0;
 `;
 
-const Balance = () => {
+const Balance = ({ balance }) => {
   return (
     <div>
       <Label>Your balance</Label>
-      <BalanceText>$260.55</BalanceText>
+      <BalanceText>${balance}</BalanceText>
     </div>
   );
 };

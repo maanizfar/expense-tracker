@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Balance from "./components/Balance";
 import IncomeExpenses from "./components/IncomeExpenses";
@@ -26,18 +26,42 @@ const Header = styled.h1`
 `;
 
 function App() {
+  const [transactions, setTransactions] = useState([]);
+
+  const addTransaction = (newTransaction) => {
+    setTransactions([...transactions, newTransaction]);
+  };
+
+  const getEntity = (entity) => {
+    const entities = transactions
+      .filter((t) => t.type === entity)
+      .map((e) => e.amount);
+    return entities.reduce((sum, current) => {
+      return sum + current;
+    }, 0);
+  };
+
+  const getBalance = () => {
+    const income = getEntity("income");
+    const expense = getEntity("expense");
+    return income - expense;
+  };
+
   return (
     <Page>
       <Container>
         <Header>Expense Tracker</Header>
 
-        <Balance />
+        <Balance balance={getBalance()} />
 
-        <IncomeExpenses />
+        <IncomeExpenses
+          income={getEntity("income")}
+          expense={getEntity("expense")}
+        />
 
-        <History />
+        <History transactions={transactions} />
 
-        <AddTransaction />
+        <AddTransaction onSubmit={addTransaction} />
       </Container>
     </Page>
   );
