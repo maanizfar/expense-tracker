@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
+import { colors } from "../styles/theme";
 
 const Heading = styled.h3`
   border-bottom: 1px solid;
@@ -50,10 +51,14 @@ const AddTransaction = ({ onSubmit }) => {
   const [type, setType] = useState("income");
   const [amount, setAmount] = useState(0);
 
-  const { addTransaction } = useContext(MyContext);
+  const { addTransaction, theme } = useContext(MyContext);
 
   return (
-    <div>
+    <div
+      style={{
+        color: theme === "light" ? colors.light.text : colors.dark.text,
+      }}
+    >
       <Heading>Add new transaction</Heading>
       <form
         onSubmit={(e) => {

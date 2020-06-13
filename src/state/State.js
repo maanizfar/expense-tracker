@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
-import reducer from "./TransactionReducer";
+import reducer from "./Reducer";
 
-const initialState = { transactions: [] };
+const initialState = { transactions: [], theme: "light" };
 
 export const MyContext = createContext(initialState);
 
@@ -22,12 +22,22 @@ export const MyProvider = ({ children }) => {
     });
   }
 
+  function setTheme(theme) {
+    console.log(theme);
+    dispatch({
+      type: "SET_THEME",
+      payload: theme,
+    });
+  }
+
   return (
     <MyContext.Provider
       value={{
         transactions: state.transactions,
+        theme: state.theme,
         addTransaction,
         removeTransaction,
+        setTheme,
       }}
     >
       {children}

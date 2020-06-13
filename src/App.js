@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Balance from "./components/Balance";
 import IncomeExpenses from "./components/IncomeExpenses";
 import History from "./components/History";
 import AddTransaction from "./components/AddTransaction";
+import ThemeToggle from "./components/ThemeToggle";
+import { colors } from "./styles/theme";
+import { MyContext } from "./state/State";
 
-import { MyProvider } from "./state/State";
+const Page = styled.div`
+  min-height: 100vh;
+  background-color: ${(props) =>
+    props.theme === "light" ? colors.light.background : colors.dark.background};
+`;
 
 const Container = styled.div`
   display: flex;
@@ -17,13 +24,18 @@ const Container = styled.div`
 const Header = styled.h1`
   font-size: 1.5rem;
   margin-bottom: 32px;
+  color: ${(props) =>
+    props.theme === "light" ? colors.light.text : colors.dark.text};
 `;
 
 function App() {
+  const { theme } = useContext(MyContext);
+
   return (
-    <MyProvider>
+    <Page theme={theme}>
+      <ThemeToggle />
       <Container>
-        <Header>Expense Tracker</Header>
+        <Header theme={theme}>Expense Tracker</Header>
 
         <Balance />
 
@@ -33,7 +45,7 @@ function App() {
 
         <AddTransaction />
       </Container>
-    </MyProvider>
+    </Page>
   );
 }
 

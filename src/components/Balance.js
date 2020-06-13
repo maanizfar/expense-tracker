@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
+import { colors } from "../styles/theme";
 
 const Label = styled.p`
+  color: ${(props) =>
+    props.theme === "light" ? colors.light.text : colors.dark.text};
   text-transform: uppercase;
   margin: 0;
 `;
 
 const BalanceText = styled.h1`
+  color: ${(props) =>
+    props.theme === "light" ? colors.light.text : colors.dark.text};
   margin-top: 0.1rem;
   font-size: 2.3rem;
 `;
 
 const Balance = () => {
-  const { transactions } = useContext(MyContext);
+  const { theme, transactions } = useContext(MyContext);
 
   const income = transactions
     .filter((t) => t.type === "income")
@@ -31,8 +36,8 @@ const Balance = () => {
 
   return (
     <div>
-      <Label>Your balance</Label>
-      <BalanceText>${balance}</BalanceText>
+      <Label theme={theme}>Your balance</Label>
+      <BalanceText theme={theme}>${balance}</BalanceText>
     </div>
   );
 };

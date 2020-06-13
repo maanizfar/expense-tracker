@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
+import { colors } from "../styles/theme";
 
 const Item = styled.li`
   display: flex;
@@ -13,10 +14,7 @@ const Item = styled.li`
   padding: 0.7rem;
   margin: 8px 0;
   position: relative;
-  -webkit-box-shadow: 2px 2px 15px -10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 2px 2px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 2px 2px 15px -10px rgba(0, 0, 0, 0.75);
-
   button {
     display: none;
   }
@@ -41,11 +39,11 @@ const Button = styled.button`
 `;
 
 const HistoryItem = ({ transaction }) => {
-  const { removeTransaction } = useContext(MyContext);
+  const { theme, removeTransaction } = useContext(MyContext);
   const { id, type, name, amount } = transaction;
 
   return (
-    <Item color={type === "income" ? "green" : "red"}>
+    <Item color={type === "income" ? "green" : "red"} theme={theme}>
       <span>{name}</span>
       <span>
         {type === "income" ? "+" : "-"} {amount}
