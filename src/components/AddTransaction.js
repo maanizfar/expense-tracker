@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import { MyContext } from "../state/State";
+
+const Heading = styled.h3`
+  border-bottom: 1px solid;
+`;
 
 const FormGroup = styled.div`
   margin-bottom: 1rem;
@@ -13,12 +18,17 @@ const FormGroup = styled.div`
   div {
     display: flex;
     justify-content: space-around;
+
+    label {
+      padding-left: 4px;
+    }
   }
 `;
 
 const TextInput = styled.input`
   padding: 0.5rem;
-  border-radius: 8px;
+  border: 1px solid;
+  border-radius: 4px;
 `;
 
 const Button = styled.button`
@@ -40,18 +50,16 @@ const AddTransaction = ({ onSubmit }) => {
   const [type, setType] = useState("income");
   const [amount, setAmount] = useState(0);
 
-  const typeChangeHandler = (value) => {
-    console.log(value);
-    setType(value);
-  };
+  const { addTransaction } = useContext(MyContext);
 
   return (
     <div>
-      <h3>Add new transaction</h3>
+      <Heading>Add new transaction</Heading>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onSubmit({
+          addTransaction({
+            id: new Date().getTime(),
             name,
             type,
             amount,
@@ -78,7 +86,7 @@ const AddTransaction = ({ onSubmit }) => {
                 id="income"
                 value="income"
                 checked={type === "income"}
-                onChange={(e) => typeChangeHandler(e.target.value)}
+                onChange={(e) => setType(e.target.value)}
               />
               <label htmlFor="income">Income</label>
             </div>
@@ -89,7 +97,7 @@ const AddTransaction = ({ onSubmit }) => {
                 id="expense"
                 value="expense"
                 checked={type === "expense"}
-                onChange={(e) => typeChangeHandler(e.target.value)}
+                onChange={(e) => setType(e.target.value)}
               />
               <label htmlFor="expense">Expense</label>
             </div>

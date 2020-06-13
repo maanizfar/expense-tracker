@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import HistoryItem from "./HistoryItem";
+import { MyContext } from "../state/State";
 
 const Container = styled.ul`
+  width: 100%;
   list-style: none;
   padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: visible;
 `;
 
-const History = ({ transactions }) => {
+const Heading = styled.h3`
+  border-bottom: 1px solid;
+`;
+
+const History = () => {
+  const { transactions } = useContext(MyContext);
+
   return (
     <div>
-      <h3>History</h3>
+      <Heading>History</Heading>
       <Container>
         {transactions &&
           transactions.map((transaction, index) => (

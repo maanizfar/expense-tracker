@@ -5,65 +5,35 @@ import IncomeExpenses from "./components/IncomeExpenses";
 import History from "./components/History";
 import AddTransaction from "./components/AddTransaction";
 
-const Page = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-`;
+import { MyProvider } from "./state/State";
 
 const Container = styled.div`
-  padding: 2rem;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
 `;
 
 const Header = styled.h1`
-  text-align: center;
   font-size: 1.5rem;
   margin-bottom: 32px;
 `;
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
-
-  const addTransaction = (newTransaction) => {
-    setTransactions([...transactions, newTransaction]);
-  };
-
-  const getEntity = (entity) => {
-    const entities = transactions
-      .filter((t) => t.type === entity)
-      .map((e) => e.amount);
-    return entities.reduce((sum, current) => {
-      return sum + current;
-    }, 0);
-  };
-
-  const getBalance = () => {
-    const income = getEntity("income");
-    const expense = getEntity("expense");
-    return income - expense;
-  };
-
   return (
-    <Page>
+    <MyProvider>
       <Container>
         <Header>Expense Tracker</Header>
 
-        <Balance balance={getBalance()} />
+        <Balance />
 
-        <IncomeExpenses
-          income={getEntity("income")}
-          expense={getEntity("expense")}
-        />
+        <IncomeExpenses />
 
-        <History transactions={transactions} />
+        <History />
 
-        <AddTransaction onSubmit={addTransaction} />
+        <AddTransaction />
       </Container>
-    </Page>
+    </MyProvider>
   );
 }
 
