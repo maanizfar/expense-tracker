@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
-import { colors } from "../styles/theme";
+import { getTextColor } from "../styles/theme";
 
 const Label = styled.p`
-  color: ${(props) =>
-    props.theme === "light" ? colors.light.text : colors.dark.text};
+  color: ${({ theme }) => getTextColor(theme)};
   text-transform: uppercase;
   margin: 0;
 `;
 
 const BalanceText = styled.h1`
-  color: ${(props) =>
-    props.theme === "light" ? colors.light.text : colors.dark.text};
-  margin-top: 0.1rem;
+  color: ${({ theme }) => getTextColor(theme)};
+  margin: 0.1rem 0;
+
   font-size: 2.3rem;
 `;
 

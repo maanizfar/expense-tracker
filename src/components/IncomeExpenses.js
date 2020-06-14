@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
+import { getShadowColor } from "../styles/theme";
 
 const Container = styled.div`
   display: flex;
   background-color: white;
   border: 0px solid;
+  border-radius: 8px;
   margin: 1rem 0;
-  -webkit-box-shadow: 2px 2px 15px -10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 2px 2px 15px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 2px 2px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: ${({ theme }) => getShadowColor(theme)};
 
   div:first-child {
-    border-right: 1px solid;
+    border-right: 1px solid black;
   }
 `;
 
@@ -26,6 +26,7 @@ const Label = styled.p`
   text-align: center;
   text-transform: uppercase;
   margin: 0;
+  color: black;
 `;
 
 const BalanceText = styled.h1`
@@ -36,7 +37,7 @@ const BalanceText = styled.h1`
 `;
 
 const IncomeExpenses = () => {
-  const { transactions } = useContext(MyContext);
+  const { transactions, theme } = useContext(MyContext);
 
   const income = transactions
     .filter((t) => t.type === "income")
@@ -51,7 +52,7 @@ const IncomeExpenses = () => {
     .toFixed(2);
 
   return (
-    <Container>
+    <Container theme={theme}>
       <StatContainer>
         <Label>Income</Label>
         <BalanceText color="green">${income}</BalanceText>

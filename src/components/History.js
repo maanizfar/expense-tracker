@@ -7,10 +7,8 @@ import { colors } from "../styles/theme";
 const Container = styled.ul`
   width: 100%;
   list-style: none;
+  margin: 1rem 9;
   padding: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  overflow-x: visible;
 
   p {
     color: ${(props) =>

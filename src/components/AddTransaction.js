@@ -1,7 +1,12 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
-import { colors } from "../styles/theme";
+import { getTextColor } from "../styles/theme";
+
+const Container = styled.div`
+  margin: 1rem 0;
+  color: ${({ theme }) => getTextColor(theme)};
+`;
 
 const Heading = styled.h3`
   border-bottom: 1px solid;
@@ -24,6 +29,13 @@ const FormGroup = styled.div`
       padding-left: 4px;
     }
   }
+
+  input[type="radio"] {
+    cursor: pointer;
+    border: 0px;
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const TextInput = styled.input`
@@ -33,10 +45,11 @@ const TextInput = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 0.5rem;
+  padding: 0.8rem;
   width: 100%;
   color: white;
   background-color: ${(props) => props.color || "green"};
+  background: linear-gradient(lightgreen, green);
   border: none;
   border-radius: 8px;
   font-size: 1.2rem;
@@ -54,11 +67,7 @@ const AddTransaction = ({ onSubmit }) => {
   const { addTransaction, theme } = useContext(MyContext);
 
   return (
-    <div
-      style={{
-        color: theme === "light" ? colors.light.text : colors.dark.text,
-      }}
-    >
+    <Container theme={theme}>
       <Heading>Add new transaction</Heading>
       <form
         onSubmit={(e) => {
@@ -69,10 +78,12 @@ const AddTransaction = ({ onSubmit }) => {
             type,
             amount,
           });
+          setName("");
+          setAmount(0);
         }}
       >
         <FormGroup>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name:</label>
           <TextInput
             type="text"
             id="name"
@@ -82,7 +93,7 @@ const AddTransaction = ({ onSubmit }) => {
           />
         </FormGroup>
         <FormGroup>
-          <p>Select type of transaction</p>
+          <p>Select type of transaction:</p>
           <div>
             <div>
               <input
@@ -109,7 +120,7 @@ const AddTransaction = ({ onSubmit }) => {
           </div>
         </FormGroup>
         <FormGroup>
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Amount:</label>
           <TextInput
             type="number"
             name="amount"
@@ -123,7 +134,7 @@ const AddTransaction = ({ onSubmit }) => {
         </FormGroup>
         <Button type="submit">Add Transaction</Button>
       </form>
-    </div>
+    </Container>
   );
 };
 

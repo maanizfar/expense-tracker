@@ -23,7 +23,6 @@ export const MyProvider = ({ children }) => {
   }
 
   function setTheme(theme) {
-    console.log(theme);
     dispatch({
       type: "SET_THEME",
       payload: theme,

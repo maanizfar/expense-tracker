@@ -1,22 +1,26 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { MyContext } from "../state/State";
-import { colors } from "../styles/theme";
 
 const Toggle = styled.button`
   background-color: red;
+  background: linear-gradient(lightgreen, green);
   border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  margin: 8px;
+
   img {
     max-width: 2.5rem;
     height: auto;
     transition: all 0.3s linear;
 
-    &:first-child {
+    :first-child {
       transform: ${({ theme }) =>
         theme === "light" ? "translateY(0)" : "translateY(-100px)"};
     }
 
-    &:nth-child(2) {
+    :nth-child(2) {
       transform: ${({ theme }) =>
         theme === "light" ? "translateY(-100px)" : "translateY(0)"};
     }
@@ -24,7 +28,7 @@ const Toggle = styled.button`
 `;
 
 const ThemeToggle = () => {
-  const { theme, setTheme, transactions } = useContext(MyContext);
+  const { theme, setTheme } = useContext(MyContext);
 
   const onClickHandler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
