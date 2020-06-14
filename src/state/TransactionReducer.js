@@ -10,11 +10,6 @@ export default (state, action) => {
         ...state,
         transactions: state.transactions.filter((t) => t.id !== action.payload),
       };
-    case "SET_THEME":
-      return {
-        ...state,
-        theme: action.payload,
-      };
     default:
       return state;
   }

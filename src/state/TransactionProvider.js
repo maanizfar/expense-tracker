@@ -1,11 +1,11 @@
 import React, { createContext, useReducer } from "react";
-import reducer from "./Reducer";
+import reducer from "./TransactionReducer";
 
 const initialState = { transactions: [], theme: "light" };
 
-export const MyContext = createContext(initialState);
+export const TransactionContext = createContext(initialState);
 
-export const MyProvider = ({ children }) => {
+export const TransactionProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function addTransaction(transaction) {
@@ -22,24 +22,15 @@ export const MyProvider = ({ children }) => {
     });
   }
 
-  function setTheme(theme) {
-    dispatch({
-      type: "SET_THEME",
-      payload: theme,
-    });
-  }
-
   return (
-    <MyContext.Provider
+    <TransactionContext.Provider
       value={{
         transactions: state.transactions,
-        theme: state.theme,
         addTransaction,
         removeTransaction,
-        setTheme,
       }}
     >
       {children}
-    </MyContext.Provider>
+    </TransactionContext.Provider>
   );
 };

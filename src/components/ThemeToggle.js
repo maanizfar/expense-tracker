@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MyContext } from "../state/State";
+import { ThemeContext } from "../state/ThemeProvider";
 
 const Toggle = styled.button`
   background-color: red;
@@ -28,7 +28,7 @@ const Toggle = styled.button`
 `;
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useContext(MyContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const onClickHandler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");

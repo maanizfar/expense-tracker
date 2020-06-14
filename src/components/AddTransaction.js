@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { MyContext } from "../state/State";
+import { TransactionContext } from "../state/TransactionProvider";
+import { ThemeContext } from "../state/ThemeProvider";
 import { getTextColor } from "../styles/theme";
 
 const Container = styled.div`
@@ -62,9 +63,10 @@ const Button = styled.button`
 const AddTransaction = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [type, setType] = useState("income");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
 
-  const { addTransaction, theme } = useContext(MyContext);
+  const { addTransaction } = useContext(TransactionContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <Container theme={theme}>
@@ -79,7 +81,7 @@ const AddTransaction = ({ onSubmit }) => {
             amount,
           });
           setName("");
-          setAmount(0);
+          setAmount("");
         }}
       >
         <FormGroup>

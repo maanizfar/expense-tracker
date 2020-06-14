@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MyContext } from "../state/State";
+import { TransactionContext } from "../state/TransactionProvider";
+import { ThemeContext } from "../state/ThemeProvider";
 import { getShadowColor } from "../styles/theme";
 
 const Item = styled.li`
@@ -41,7 +42,8 @@ const Button = styled.button`
 `;
 
 const HistoryItem = ({ transaction }) => {
-  const { theme, removeTransaction } = useContext(MyContext);
+  const { removeTransaction } = useContext(TransactionContext);
+  const { theme } = useContext(ThemeContext);
   const { id, type, name, amount } = transaction;
 
   return (

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import HistoryItem from "./HistoryItem";
-import { MyContext } from "../state/State";
+import { TransactionContext } from "../state/TransactionProvider";
+import { ThemeContext } from "../state/ThemeProvider";
 import { colors } from "../styles/theme";
 
 const Container = styled.ul`
@@ -23,7 +24,8 @@ const Heading = styled.h3`
 `;
 
 const History = () => {
-  const { transactions, theme } = useContext(MyContext);
+  const { transactions } = useContext(TransactionContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div>

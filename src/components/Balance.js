@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MyContext } from "../state/State";
+import { TransactionContext } from "../state/TransactionProvider";
+import { ThemeContext } from "../state/ThemeProvider";
 import { getTextColor } from "../styles/theme";
 
 const Label = styled.p`
@@ -17,7 +18,8 @@ const BalanceText = styled.h1`
 `;
 
 const Balance = () => {
-  const { theme, transactions } = useContext(MyContext);
+  const { transactions } = useContext(TransactionContext);
+  const { theme } = useContext(ThemeContext);
 
   const income = transactions
     .filter((t) => t.type === "income")

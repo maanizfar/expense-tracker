@@ -3,13 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-import { MyProvider } from "./state/State";
+import { TransactionProvider } from "./state/TransactionProvider";
+import { ThemeProvider } from "./state/ThemeProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyProvider>
-      <App />
-    </MyProvider>
+    <TransactionProvider>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </TransactionProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

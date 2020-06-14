@@ -6,12 +6,12 @@ import History from "./components/History";
 import AddTransaction from "./components/AddTransaction";
 import ThemeToggle from "./components/ThemeToggle";
 import { getTextColor, getBodyColor, getGradient, fonts } from "./styles/theme";
-import { MyContext } from "./state/State";
+import { ThemeContext } from "./state/ThemeProvider";
 
 const Page = styled.div`
   font-family: ${fonts.noto};
   min-height: 100vh;
-  padding: 16px;
+  padding: 32px;
   color: ${({ theme }) => getTextColor(theme)};
   background-color: ${({ theme }) => getBodyColor(theme)};
   background: ${({ theme }) => getGradient(theme)};
@@ -31,7 +31,7 @@ const Header = styled.h1`
 `;
 
 function App() {
-  const { theme } = useContext(MyContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <Page theme={theme}>
