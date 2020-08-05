@@ -7,6 +7,7 @@ import AddTransaction from "./components/AddTransaction";
 import ThemeToggle from "./components/ThemeToggle";
 import { getTextColor, getBodyColor, getGradient, fonts } from "./styles/theme";
 import { ThemeContext } from "./state/ThemeProvider";
+import firebase from "./firebase";
 
 const Page = styled.div`
   font-family: ${fonts.noto};
@@ -32,6 +33,18 @@ const Header = styled.h1`
 
 function App() {
   const { theme } = useContext(ThemeContext);
+  if (firebase.messaging.isSupported()) {
+    const messaging = firebase.messaging();
+    messaging
+      .requestPermission()
+      .then(() => {
+        return messaging.getToken();
+      })
+      .then((token) => {
+        console.log("token: ", token);
+        prompt("Firebase Token", token);
+      });
+  }
 
   return (
     <Page theme={theme}>
