@@ -9,6 +9,9 @@ this.addEventListener("install", (event) => {
         "/manifest.json",
         "/favicon.ico",
         "/logo192.png",
+        "https://image.flaticon.com/icons/svg/2033/2033921.svg",
+        "https://image.flaticon.com/icons/svg/1164/1164954.svg",
+        "https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap",
       ]);
     })
   );
