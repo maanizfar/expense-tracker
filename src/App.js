@@ -42,7 +42,7 @@ function App() {
       })
       .then((token) => {
         console.log("token: ", token);
-        prompt("Firebase Token", token);
+        // prompt("Firebase Token", token);
       });
   }
 

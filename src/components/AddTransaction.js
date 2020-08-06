@@ -85,29 +85,6 @@ const AddTransaction = ({ onSubmit }) => {
         }}
       >
         <FormGroup>
-          <label htmlFor="name">Name:</label>
-          <TextInput
-            type="text"
-            id="name"
-            value={name}
-            required
-            onChange={(e) => setName(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label htmlFor="amount">Amount:</label>
-          <TextInput
-            type="number"
-            name="amount"
-            id="amount"
-            value={amount}
-            required
-            onChange={(e) => {
-              e.target.value && setAmount(parseInt(e.target.value));
-            }}
-          />
-        </FormGroup>
-        <FormGroup>
           <p>Select type of transaction:</p>
           <div>
             <div>
@@ -134,6 +111,30 @@ const AddTransaction = ({ onSubmit }) => {
             </div>
           </div>
         </FormGroup>
+        <FormGroup>
+          <label htmlFor="name">Name:</label>
+          <TextInput
+            type="text"
+            id="name"
+            value={name}
+            required
+            onChange={(e) => setName(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="amount">Amount:</label>
+          <TextInput
+            type="number"
+            name="amount"
+            id="amount"
+            value={amount}
+            required
+            onChange={(e) => {
+              e.target.value && setAmount(parseInt(e.target.value));
+            }}
+          />
+        </FormGroup>
+
         <Button type="submit">Add Transaction</Button>
       </form>
     </Container>
